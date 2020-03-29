@@ -15,6 +15,14 @@
 
 在[@loliconApiBot](https://t.me/loliconApiBot)申请API。
 
-在[Google Apps Script](https://script.google.com/)创建项目,代码放进去,添加Firebase的引用,前面几个API填进去。
+在[Google Apps Script](https://script.google.com/)创建项目。
+
+代码丢进去。
+
+添加Firebase的引用。
+
+前面几个API填进去。
+
+设置TelegramBot的WebHook。
 
 完成。
