@@ -58,7 +58,7 @@ function initSetu (rate)
 }
 
 function sendSetu (chatId, setu, disable_notification)
-{
+{    
     let caption = setCaption(setu);
     let payload = {
         "chat_id": chatId,
@@ -86,7 +86,19 @@ function sendSetu (chatId, setu, disable_notification)
         "contentType": "application/json",
         "payload": JSON.stringify(payload)
     }
-    UrlFetchApp.fetch(apiUrl + "sendPhoto", req);
+    try
+    {
+        UrlFetchApp.fetch(apiUrl + "sendPhoto", req);
+    }
+    catch(ex)
+    {
+        let patt = new RegExp("\{.*\}");
+        let ret = JSON.parse(patt.exec(ex["message"])[0]);
+        if(ret["ok"] === false && ret["error_code"] === 403)
+        {
+            setData("chatIds/" + chatId + "/rate", "False");
+        }
+    }
 }
 
 function getChatIds (rate)
